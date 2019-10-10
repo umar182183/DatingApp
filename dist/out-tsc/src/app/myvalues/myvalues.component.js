@@ -8,11 +8,17 @@ let MyvaluesComponent = class MyvaluesComponent {
         this.getValues();
     }
     getValues() {
-        this.http.get("https://localhost:44307/api/values").subscribe(x => {
-            this.values = x;
-        }, error => {
-            console.log(error);
-        });
+        if (!localStorage.getItem("MyValues")) {
+            this.http.get("https://localhost:44307/api/values").subscribe(x => {
+                localStorage.setItem("MyValues", JSON.stringify(x));
+                this.valuesList = x;
+            }, error => {
+                console.log(error);
+            });
+        }
+        else {
+            this.valuesList = JSON.parse(localStorage.getItem("MyValues"));
+        }
     }
 };
 MyvaluesComponent = tslib_1.__decorate([
