@@ -1,0 +1,69 @@
+import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/_models/user.model';
+import { ActivatedRoute } from '@angular/router';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { Photo } from 'src/app/_models/photo.model';
+
+@Component({
+  selector: 'app-member-detail',
+  templateUrl: './member-detail.component.html',
+  styleUrls: ['./member-detail.component.css']
+})
+export class MemberDetailComponent implements OnInit {
+
+  // photos: Photo;
+  user : User;
+
+  galleryOptions: NgxGalleryOptions[];
+  galleryImages: NgxGalleryImage[];
+  
+  constructor(private route: ActivatedRoute) { 
+  }
+
+  ngOnInit() {
+    this.route.data.subscribe(data =>{
+      this.user = data['user'];
+    });
+
+    this.galleryOptions = [
+      {
+        width: '500px',
+        height: '500px',
+        imagePercent: 100,
+        thumbnailsColumns: 4,
+        imageAnimation: NgxGalleryAnimation.Slide,
+        preview: false
+      }
+    ];
+
+
+    this.galleryImages = this.getImages();
+  }
+  
+  getImages()
+  {
+    // try {
+      const imageUrls = [];
+      // for(let i=0; i=this.photos.url.length; i++)
+    {
+        imageUrls.push({
+        
+          small: 'https://randomuser.me/api/portraits/women/33.jpg',
+          medium: 'https://randomuser.me/api/portraits/women/33.jpg',
+          big: 'https://randomuser.me/api/portraits/women/33.jpg',
+          description: 'https://randomuser.me/api/portraits/women/33.jpg',
+        });
+      
+      
+    }
+    return imageUrls;
+    // }
+    
+    // catch (error) {
+      
+    //  }  
+    
+
+  }
+  
+}
