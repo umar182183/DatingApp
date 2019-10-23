@@ -10,8 +10,7 @@ import { Photo } from 'src/app/_models/photo.model';
   styleUrls: ['./member-detail.component.css']
 })
 export class MemberDetailComponent implements OnInit {
-
-  // photos: Photo;
+  photos: Photo;
   user : User;
 
   galleryOptions: NgxGalleryOptions[];
@@ -42,28 +41,19 @@ export class MemberDetailComponent implements OnInit {
   
   getImages()
   {
-    // try {
       const imageUrls = [];
-      // for(let i=0; i=this.photos.url.length; i++)
+      for(let i = 0; i < this.user.photos.length; i++)
     {
         imageUrls.push({
         
-          small: 'https://randomuser.me/api/portraits/women/33.jpg',
-          medium: 'https://randomuser.me/api/portraits/women/33.jpg',
-          big: 'https://randomuser.me/api/portraits/women/33.jpg',
-          description: 'https://randomuser.me/api/portraits/women/33.jpg',
+          small : this.user.photos[i].url,
+          medium : this.user.photos[i].url,
+          big : this.user.photos[i].url,
+          description : this.user.photos[i].description,
         });
       
       
     }
     return imageUrls;
-    // }
-    
-    // catch (error) {
-      
-    //  }  
-    
-
   }
-  
 }

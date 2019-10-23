@@ -29,4 +29,19 @@ export class UserService {
   {
     return this.httpClient.get<User>(this.baseURL+"users/"+id);
   }
+
+  UpdateUser(id: number, user: User)
+  {
+    return this.httpClient.put(this.baseURL+"users/"+id, user);
+  }
+
+  setMainPhoto(userId: number, id: number)
+  {
+    return this.httpClient.post(this.baseURL+"users/"+userId+"/photos/"+id+"/setMain", {});
+  }
+
+  deletePhoto(userId: number, id: number)
+  {
+    return this.httpClient.delete(this.baseURL+"users/"+userId+"/photos/"+id);
+  }
 }

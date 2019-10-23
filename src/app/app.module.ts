@@ -22,6 +22,11 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { UserDetailsResolver } from './_resolvers/user-details.resolver';
 import { UserListResolver } from './_resolvers/user-list.resolver';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { UserEditComponent } from './members/user-edit/user-edit.component';
+import { UserEditResolver } from './_resolvers/user-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsavedchanges.guard';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 
  export function tokenGetter()
@@ -39,7 +44,9 @@ import { NgxGalleryModule } from 'ngx-gallery';
     ListsComponent,
     MessagesComponent,
     MemberCardComponent,
-    MemberDetailComponent
+    MemberDetailComponent,
+    UserEditComponent,
+    PhotoEditorComponent
     
   ],
   imports: [
@@ -48,6 +55,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    FileUploadModule,
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
     JwtModule.forRoot({
@@ -60,7 +68,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
     
     
   ],
-  providers: [AuthService, AlertifysService, AuthGuard, UserService, UserDetailsResolver, UserListResolver],
+  providers: [AuthService, AlertifysService, AuthGuard, UserService, UserDetailsResolver, UserListResolver, UserEditResolver, PreventUnsavedChanges],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
